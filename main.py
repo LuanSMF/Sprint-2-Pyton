@@ -1,7 +1,6 @@
-from unittest import case
 
 bibliotecas = {}
-lixeira= []
+lixeira = []
 while(True):
 
     print("\n===== MENU =====")
@@ -10,6 +9,7 @@ while(True):
     print("3 - Adicionar fotos em uma pasta")
     print("4 - Ver bibliotecas")
     print("5 - Ver lixeira")
+    print("6 - Apagar biblioteca")
     print("0 - Sair")
 
     menu = input("Escolha uma opção: ")
@@ -56,7 +56,7 @@ while(True):
                 if(nome_pasta not in bibliotecas[name_bibliotecas]):
                     print("Pasta não encontrada.")
                 else:
-                    foto = input("Digite o Nome da foto da pasta: ")
+                    foto = input("Digite o nome da foto da pasta: ")
                     bibliotecas[name_bibliotecas][nome_pasta].append(foto)
         case "4":
             # ==========================
@@ -88,6 +88,75 @@ while(True):
 
                 for item in lixeira:
                     print(item)
+
+        case "6":
+
+            print("\n===== LIXEIRA =====")
+            print("1 - Excluir biblioteca")
+            print("2 - Excluir pasta")
+            print("3 - Excluir fotos de uma pasta")
+            print("0 - Sair")
+
+            lixo = input("Escolha uma opção: ")
+
+            match lixo:
+
+                case "1":
+                # ======================
+                # EXCLUIR BIBLIOTECA
+                # ======================
+                    name_bibliotecas = input("Nome da biblioteca: ")
+
+                    if (name_bibliotecas not in bibliotecas):
+                        print("Biblioteca não existe!")
+                    else:
+                        del bibliotecas[name_bibliotecas]
+                        print("Bibliotecas apagada com sucesso!")
+
+                case "2":
+                # ======================
+                # EXCLUIR PASTA
+                # ======================
+                    name_bibliotecas = input("Nome da biblioteca: ")
+
+                    if (name_bibliotecas not in bibliotecas):
+                        print("biblioteca não encontrada")
+                    else:
+                        nome_pasta = input("Nome da pasta: ")
+
+                        if (nome_pasta not in bibliotecas[name_bibliotecas]):
+                            print("Pasta não existe!")
+                        else:
+                            del bibliotecas[name_bibliotecas][nome_pasta]
+                            print("Pasta deletada com sucesso!")
+
+                case "3":
+                # ======================
+                # EXCLUIR FOTOS
+                # ======================
+                    name_bibliotecas = input("Digite a biblioteca: ")
+
+                    if (name_bibliotecas not in bibliotecas):
+                        print("Biblioteca não encontrada.")
+                    else:
+                        nome_pasta = input("Digite o nome da pasta: ")
+
+                        if (nome_pasta not in bibliotecas[name_bibliotecas]):
+                            print("Pasta não encontrada.")
+                        else:
+                            foto = input("Digite o nome da foto da pasta: ")
+                            bibliotecas[name_bibliotecas][nome_pasta].remove(foto)
+
+                case "0":
+                    # ==========================
+                    # SAIR
+                    # ==========================
+                        print("Fechando lixeira.")
+                        break
+                case _:
+                    print("Opção inválida.")
+
+
         case "0":
             # ==========================
             # SAIR
@@ -96,3 +165,4 @@ while(True):
                 break
         case _:
             print("Opção inválida.")
+
