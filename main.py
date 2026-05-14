@@ -86,7 +86,7 @@ while(True):
 
             transf = input("Escolha uma opção: ")
 
-                match transf:
+            match transf:
                     case "1":
                         name_bibliotecas = input("Digite o nome da biblioteca: ")
 
@@ -99,7 +99,7 @@ while(True):
                                 if (resposta == "Sim" or "sim" or "Não" or "Nao" or "nao" or "não"):
                                     break
 
-                            if(resposta == "Não" or "Nao" or "nao" or "não")
+                            if(resposta == "Não" or "Nao" or "nao" or "não"):
                                 break
                             else:
 
@@ -145,7 +145,7 @@ while(True):
                     for item in lixeira:
                         print(item)
 
-            case "7":
+        case "7":
 
                 print("\n===== LIXEIRA =====")
                 print("1 - Excluir biblioteca")
@@ -213,12 +213,12 @@ while(True):
                         print("Opção inválida.")
 
 
-            case "0":
+        case "0":
                 # ==========================
                 # SAIR
                 # ==========================
                     print("Encerrando o sistema...")
                     break
-            case _:
+        case _:
                 print("Opção inválida.")
 
