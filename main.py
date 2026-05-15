@@ -30,7 +30,7 @@ while(True):
                 print("Biblioteca já existe!")
             else:
                 bibliotecas[name_bibliotecas] = {}
-                print("Bibliotecas criada com sucesso!")
+                print("Biblioteca criada com sucesso!")
 
         case "2":
             # ==========================
@@ -138,6 +138,8 @@ while(True):
                                     resposta= input("Certeza que deseja deletar? Sim ou não: ")
                                     if resposta.lower() in ["sim", "s","não", "nao", "n"]:
                                         break
+                                    else:
+                                        print("Opção inválida. Digite sim ou não.")
                                 if resposta.lower() in ["não", "nao", "n"]:
                                     print("Operação cancelada.")
                                 else:
@@ -160,7 +162,7 @@ while(True):
                                         "biblioteca": nome_final,
                                         "conteudo": bibliotecas[name_bibliotecas]
                                     })
-
+                                    print("Biblioteca enviada para lixeira.")
                                     del bibliotecas[name_bibliotecas]
 
                         case "2":
@@ -191,6 +193,8 @@ while(True):
                                     resposta = input("Certeza que deseja deletar? Sim ou não: ")
                                     if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
                                         break
+                                    else:
+                                        print("Opção inválida. Digite sim ou não.")
                                 if resposta.lower() in ["não", "nao", "n"]:
                                     print("Operação cancelada.")
                                 else:
@@ -257,6 +261,8 @@ while(True):
                                         resposta = input("Certeza que deseja deletar? Sim ou não: ")
                                         if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
                                             break
+                                        else:
+                                            print("Opção inválida. Digite sim ou não.")
                                     if resposta.lower() in ["não", "nao", "n"]:
                                         print("Operação cancelada.")
                                     else:
@@ -317,151 +323,159 @@ while(True):
                         print("\n")
 
         case "7":
-            print(" Deseja Recuperar :")
-            print("1 - Biblioteca")
-            print("2 - Pasta")
-            print("3 - Foto")
-            print("0 - Sair")
-            balde = input("Escolha uma opção: ")
-            match balde:
+            while True:
+                print(" Deseja Recuperar :")
+                print("1 - Biblioteca")
+                print("2 - Pasta")
+                print("3 - Foto")
+                print("0 - Sair")
+                balde = input("Escolha uma opção: ")
+                match balde:
 
-                case "1":
-                    print("Biblioteca:")
-                    while True:
-                        name_bibliotecas = input("Digite o nome da biblioteca: ")
-                        if name_bibliotecas.strip() == "":
-                            print("Nome inválido.")
-                        else:
-                            break
-                    busca=None
-                    for item in lixeira:
-                        if item["tipo"] == "biblioteca" and item["biblioteca"] == name_bibliotecas :
-                            busca =item
-                            break
-                    if busca == None:
-                        print("Biblioteca não encontrada.")
-                    else:
-                        resposta = "x"
-                        while (True):
-                            resposta = input("Certeza que deseja Recuperar? Sim ou não: ")
-                            if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
+                    case "1":
+                        print("Biblioteca:")
+                        while True:
+                            name_bibliotecas = input("Digite o nome da biblioteca: ")
+                            if name_bibliotecas.strip() == "":
+                                print("Nome inválido.")
+                            else:
                                 break
-                            else:
-                                print("Opção invalida.")
-                        if resposta.lower() in ["não", "nao", "n"]:
-                            print("Operação cancelada.")
-                        else:
-                            if name_bibliotecas in bibliotecas:
-                                print("Já existe uma biblioteca com esse nome. Não foi possível recuperar.")
-                            else:
-                                bibliotecas[name_bibliotecas] = busca["conteudo"]
-
-                                lixeira.remove(busca)
-
-                                print("Biblioteca recuperada com sucesso.")
-                case "2":
-                    print("Pasta:")
-                    while True:
-                        name_bibliotecas = input("Digite o nome da Biblioteca: ")
-
-                        if name_bibliotecas.strip() == "":
-                            print("Nome inválido.")
-                        else:
-                            break;
-                    while True:
-                        nome_pasta = input("Digite o nome da Pasta: ")
-
-                        if nome_pasta.strip() == "":
-                            print("Nome inválido.")
-                        else:
-                            break;
-
-                    busca=None
-                    for item in lixeira:
-                        if item["tipo"] == "pasta" and item["biblioteca"] == name_bibliotecas and item["nome"] == nome_pasta :
-                            busca =item
-                            break
-                    if busca == None:
-                        print("Arquivo não encontrado.")
-                    else:
-                        resposta = "x"
-                        while (True):
-                            resposta = input("Certeza que deseja Recuperar? Sim ou não: ")
-                            if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
+                        busca=None
+                        for item in lixeira:
+                            if item["tipo"] == "biblioteca" and item["biblioteca"] == name_bibliotecas :
+                                busca =item
                                 break
-                        if resposta.lower() in ["não", "nao", "n"]:
-                            print("Operação cancelada.")
+                        if busca == None:
+                            print("Biblioteca não encontrada.")
                         else:
-                            if name_bibliotecas not in bibliotecas:
-                                bibliotecas[name_bibliotecas] = {}
-                            if nome_pasta in bibliotecas[name_bibliotecas]:
-                                print("Já existe uma pasta com esse nome. Não foi possível recuperar.")
+                            resposta = "x"
+                            while (True):
+                                resposta = input("Certeza que deseja Recuperar? Sim ou não: ")
+                                if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
+                                    break
+                                else:
+                                    print("Opção invalida.Digite sim ou não")
+                            if resposta.lower() in ["não", "nao", "n"]:
+                                print("Operação cancelada.")
                             else:
-                                bibliotecas[name_bibliotecas][nome_pasta] = busca["conteudo"]
-                                lixeira.remove(busca)
+                                if name_bibliotecas in bibliotecas:
+                                    print("Já existe uma biblioteca com esse nome. Não foi possível recuperar.")
+                                else:
+                                    bibliotecas[name_bibliotecas] = busca["conteudo"]
 
-                                print("Arquivo recuperado com sucesso.")
+                                    lixeira.remove(busca)
 
-                case "3":
-                    print("Foto:")
-                    while (True):
-                        name_bibliotecas = input("Digite o nome da Biblioteca: ")
+                                    print("Biblioteca recuperada com sucesso.")
+                    case "2":
+                        print("Pasta:")
+                        while True:
+                            name_bibliotecas = input("Digite o nome da Biblioteca: ")
 
-                        if name_bibliotecas.strip() == "":
-                            print("Nome inválido.")
-                        else:
-                            break;
+                            if name_bibliotecas.strip() == "":
+                                print("Nome inválido.")
+                            else:
+                                break;
+                        while True:
+                            nome_pasta = input("Digite o nome da Pasta: ")
 
-                    while (True):
-                        nome_pasta = input("Digite o nome da pasta: ")
+                            if nome_pasta.strip() == "":
+                                print("Nome inválido.")
+                            else:
+                                break;
 
-                        if nome_pasta.strip() == "":
-                            print("Nome inválido.")
-                        else:
-                            break;
-
-                    while (True):
-                        foto = input("Digite o nome da foto: ")
-
-                        if foto.strip() == "":
-                            print("Nome inválido.")
-                        else:
-                            break;
-
-                    busca=None
-                    for item in lixeira:
-                        if item["tipo"] == "foto" and item["biblioteca"] == name_bibliotecas and item["pasta"]== nome_pasta and item["nome"] == foto :
-                            busca =item
-                            break
-                    if busca == None:
-                        print("Arquivo não encontrado.")
-                    else:
-                        resposta = "x"
-                        while (True):
-                            resposta = input("Certeza que deseja Recuperar? Sim ou não: ")
-                            if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
+                        busca=None
+                        for item in lixeira:
+                            if item["tipo"] == "pasta" and item["biblioteca"] == name_bibliotecas and item["nome"] == nome_pasta :
+                                busca =item
                                 break
-                        if resposta.lower() in ["não", "nao", "n"]:
-                            print("Operação cancelada.")
+                        if busca == None:
+                            print("Arquivo não encontrado.")
                         else:
-                            if name_bibliotecas not in bibliotecas:
-                                bibliotecas[name_bibliotecas] = {}
-
-                            if nome_pasta not in bibliotecas[name_bibliotecas]:
-                                bibliotecas[name_bibliotecas][nome_pasta] = []
-                            if busca["nome"] in bibliotecas[name_bibliotecas][nome_pasta]:
-                                print("Essa foto já existe nessa pasta. Não foi possível recuperar.")
+                            resposta = "x"
+                            while (True):
+                                resposta = input("Certeza que deseja Recuperar? Sim ou não: ")
+                                if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
+                                    break
+                                else:
+                                    print("Opção inválida. Digite sim ou não.")
+                            if resposta.lower() in ["não", "nao", "n"]:
+                                print("Operação cancelada.")
                             else:
-                                bibliotecas[name_bibliotecas][nome_pasta].append(busca["nome"])
+                                if name_bibliotecas not in bibliotecas:
+                                    bibliotecas[name_bibliotecas] = {}
+                                if nome_pasta in bibliotecas[name_bibliotecas]:
+                                    print("Já existe uma pasta com esse nome. Não foi possível recuperar.")
+                                else:
+                                    bibliotecas[name_bibliotecas][nome_pasta] = busca["conteudo"]
+                                    lixeira.remove(busca)
 
-                                lixeira.remove(busca)
+                                    print("Pasta recuperado com sucesso.")
 
-                                print("Arquivo recuperado com sucesso.")
-                case "0":
-                    # ==========================
-                    # SAIR
-                    # ==========================
-                    print("Retornando ao Menu...")
+                    case "3":
+                        print("Foto:")
+                        while (True):
+                            name_bibliotecas = input("Digite o nome da Biblioteca: ")
+
+                            if name_bibliotecas.strip() == "":
+                                print("Nome inválido.")
+                            else:
+                                break;
+
+                        while (True):
+                            nome_pasta = input("Digite o nome da pasta: ")
+
+                            if nome_pasta.strip() == "":
+                                print("Nome inválido.")
+                            else:
+                                break;
+
+                        while (True):
+                            foto = input("Digite o nome da foto: ")
+
+                            if foto.strip() == "":
+                                print("Nome inválido.")
+                            else:
+                                break;
+
+                        busca=None
+                        for item in lixeira:
+                            if item["tipo"] == "foto" and item["biblioteca"] == name_bibliotecas and item["pasta"]== nome_pasta and item["nome"] == foto :
+                                busca =item
+                                break
+                        if busca == None:
+                            print("Arquivo não encontrado.")
+                        else:
+                            resposta = "x"
+                            while (True):
+                                resposta = input("Certeza que deseja Recuperar? Sim ou não: ")
+                                if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
+                                    break
+                                else:
+                                    print("Opção inválida. Digite sim ou não.")
+                            if resposta.lower() in ["não", "nao", "n"]:
+                                print("Operação cancelada.")
+                            else:
+                                if name_bibliotecas not in bibliotecas:
+                                    bibliotecas[name_bibliotecas] = {}
+
+                                if nome_pasta not in bibliotecas[name_bibliotecas]:
+                                    bibliotecas[name_bibliotecas][nome_pasta] = []
+                                if busca["nome"] in bibliotecas[name_bibliotecas][nome_pasta]:
+                                    print("Essa foto já existe nessa pasta. Não foi possível recuperar.")
+                                else:
+                                    bibliotecas[name_bibliotecas][nome_pasta].append(busca["nome"])
+
+                                    lixeira.remove(busca)
+
+                                    print("Foto recuperado com sucesso.")
+                    case "0":
+                        # ==========================
+                        # SAIR
+                        # ==========================
+                        print("Retornando ao Menu...")
+                        break
+                    case _:
+                        print("Opção inválida.")
         case "0":
             # ==========================
             # SAIR
