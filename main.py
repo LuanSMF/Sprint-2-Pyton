@@ -44,7 +44,7 @@ while(True):
                     break
 
             if(name_bibliotecas not in bibliotecas):
-                print("biblioteca não encontrada")
+                print("Biblioteca não encontrada")
             else:
                 while True:
                     nome_pasta = input("Nome da pasta: ")
@@ -409,7 +409,7 @@ while(True):
                                     bibliotecas[name_bibliotecas][nome_pasta] = busca["conteudo"]
                                     lixeira.remove(busca)
 
-                                    print("Pasta recuperado com sucesso.")
+                                    print("Pasta recuperada com sucesso.")
 
                     case "3":
                         print("Foto:")
@@ -467,7 +467,7 @@ while(True):
 
                                     lixeira.remove(busca)
 
-                                    print("Foto recuperado com sucesso.")
+                                    print("Foto recuperada com sucesso.")
                     case "0":
                         # ==========================
                         # SAIR
