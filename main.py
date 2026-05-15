@@ -1,5 +1,3 @@
-from operator import truediv
-
 bibliotecas = {}
 lixeira = []
 while(True):
@@ -116,142 +114,78 @@ while(True):
             # ==========================
             # TRANSFERIR LIXEIRA
             # ==========================
-            print("1 - Transferir biblioteca para lixeira")
-            print("2 - Transferir pasta para lixeira")
-            print("3 - Transferir foto para lixeira")
-            print("0 - Sair")
+            while True:
+                print("1 - Transferir biblioteca para lixeira")
+                print("2 - Transferir pasta para lixeira")
+                print("3 - Transferir foto para lixeira")
+                print("0 - Sair")
 
-            transf = input("Escolha uma opção: ")
+                transf = input("Escolha uma opção: ")
 
-            match transf:
-                    case "1":
-                        while True:
-                            name_bibliotecas = input("Digite o nome da biblioteca: ")
-                            if name_bibliotecas.strip() == "":
-                                print("Nome inválido.")
-                            else:
-                                break
-                        if name_bibliotecas not in bibliotecas:
-                            print("Biblioteca não encontrada.")
-                        else:
-                            resposta="x"
-                            while (True):
-                                resposta= input("Certeza que deseja deletar? Sim ou não: ")
-                                if resposta.lower() in ["sim", "s","não", "nao", "n"]:
-                                    break
-                            if resposta.lower() in ["não", "nao", "n"]:
-                                print("Operação cancelada.")
-                            else:
-                                nome_final = name_bibliotecas
-                                contador = 1
-                                while True:
-                                    ja_existe = False
-                                    for item in lixeira:
-                                        if item["tipo"] == "biblioteca" and item["biblioteca"] == nome_final:
-                                            ja_existe = True
-                                            break
-
-                                    if ja_existe:
-                                        nome_final = f"{name_bibliotecas} ({contador})"
-                                        contador += 1
-                                    else:
-                                        break
-                                lixeira.append({
-                                    "tipo": "biblioteca",
-                                    "biblioteca": nome_final,
-                                    "conteudo": bibliotecas[name_bibliotecas]
-                                })
-
-                                del bibliotecas[name_bibliotecas]
-
-                    case "2":
-                        while True:
-                            name_bibliotecas = input("Digite o nome da biblioteca: ")
-                            if name_bibliotecas.strip() == "":
-                                print("Nome inválido.")
-                            else:
-                                break
-
-                        if name_bibliotecas not in bibliotecas:
-                            print("Biblioteca não encontrada.")
-
-                        else:
+                match transf:
+                        case "1":
                             while True:
-                                nome_pasta = input("Digite o nome da Pasta: ")
-
-                                if nome_pasta.strip() == "":
-                                    print("Nome inválido.")
-                                else:
-                                    break;
-
-                            if nome_pasta not in bibliotecas[name_bibliotecas]:
-                                print("Pasta não encontrada.")
-
-                            resposta = "x"
-                            while (True):
-                                resposta = input("Certeza que deseja deletar? Sim ou não: ")
-                                if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
-                                    break
-                            if resposta.lower() in ["não", "nao", "n"]:
-                                print("Operação cancelada.")
-                            else:
-                                contador = 1
-                                nome_final = nome_pasta
-                                while True:
-                                    ja_existe = False
-                                    for item in lixeira:
-                                        if item["tipo"] == "pasta" and item["nome"] == nome_final:
-                                            ja_existe = True
-                                            break
-
-                                    if ja_existe:
-                                        nome_final = f"{nome_pasta} ({contador})"
-                                        contador += 1
-                                    else:
-                                        break
-
-                                lixeira.append({
-                                    "tipo": "pasta",
-                                    "biblioteca": name_bibliotecas,
-                                    "nome": nome_final,
-                                    "conteudo": bibliotecas[name_bibliotecas][nome_pasta]
-                                })
-
-                                del bibliotecas[name_bibliotecas][nome_pasta]
-
-                                print("Pasta enviada para lixeira.")
-                    case "3":
-                        while True:
-                            name_bibliotecas = input("Digite a biblioteca: ")
-                            if (name_bibliotecas.strip() == ""):
-                                print("Nome inválido.")
-                            else:
-                                break
-                        if name_bibliotecas not in bibliotecas:
-                            print("Biblioteca não encontrada.")
-
-                        else:
-                            while True:
-                                nome_pasta = input("Digite a pasta: ")
-                                if (nome_pasta.strip() == ""):
+                                name_bibliotecas = input("Digite o nome da biblioteca: ")
+                                if name_bibliotecas.strip() == "":
                                     print("Nome inválido.")
                                 else:
                                     break
-
-                            if nome_pasta not in bibliotecas[name_bibliotecas]:
-                                print("Pasta não encontrada.")
-
+                            if name_bibliotecas not in bibliotecas:
+                                print("Biblioteca não encontrada.")
                             else:
+                                resposta="x"
                                 while (True):
-                                    foto = input("Digite o nome da foto: ")
+                                    resposta= input("Certeza que deseja deletar? Sim ou não: ")
+                                    if resposta.lower() in ["sim", "s","não", "nao", "n"]:
+                                        break
+                                if resposta.lower() in ["não", "nao", "n"]:
+                                    print("Operação cancelada.")
+                                else:
+                                    nome_final = name_bibliotecas
+                                    contador = 1
+                                    while True:
+                                        ja_existe = False
+                                        for item in lixeira:
+                                            if item["tipo"] == "biblioteca" and item["biblioteca"] == nome_final:
+                                                ja_existe = True
+                                                break
 
-                                    if foto.strip() == "":
+                                        if ja_existe:
+                                            nome_final = f"{name_bibliotecas} ({contador})"
+                                            contador += 1
+                                        else:
+                                            break
+                                    lixeira.append({
+                                        "tipo": "biblioteca",
+                                        "biblioteca": nome_final,
+                                        "conteudo": bibliotecas[name_bibliotecas]
+                                    })
+
+                                    del bibliotecas[name_bibliotecas]
+
+                        case "2":
+                            while True:
+                                name_bibliotecas = input("Digite o nome da biblioteca: ")
+                                if name_bibliotecas.strip() == "":
+                                    print("Nome inválido.")
+                                else:
+                                    break
+
+                            if name_bibliotecas not in bibliotecas:
+                                print("Biblioteca não encontrada.")
+
+                            else:
+                                while True:
+                                    nome_pasta = input("Digite o nome da Pasta: ")
+
+                                    if nome_pasta.strip() == "":
                                         print("Nome inválido.")
                                     else:
                                         break;
 
-                                if foto not in bibliotecas[name_bibliotecas][nome_pasta]:
-                                    print("Foto não encontrada.")
+                                if nome_pasta not in bibliotecas[name_bibliotecas]:
+                                    print("Pasta não encontrada.")
+                                    continue
                                 resposta = "x"
                                 while (True):
                                     resposta = input("Certeza que deseja deletar? Sim ou não: ")
@@ -261,37 +195,104 @@ while(True):
                                     print("Operação cancelada.")
                                 else:
                                     contador = 1
-                                    nome_final = foto
+                                    nome_final = nome_pasta
                                     while True:
                                         ja_existe = False
                                         for item in lixeira:
-                                            if item["tipo"] == "foto" and item["nome"] == nome_final:
+                                            if item["tipo"] == "pasta" and item["nome"] == nome_final:
                                                 ja_existe = True
                                                 break
+
                                         if ja_existe:
-                                            nome_final = f"{nome_final} ({contador})"
+                                            nome_final = f"{nome_pasta} ({contador})"
                                             contador += 1
                                         else:
                                             break
 
                                     lixeira.append({
-                                        "tipo": "foto",
+                                        "tipo": "pasta",
                                         "biblioteca": name_bibliotecas,
-                                        "pasta": nome_pasta,
-                                        "nome": nome_final
+                                        "nome": nome_final,
+                                        "conteudo": bibliotecas[name_bibliotecas][nome_pasta]
                                     })
 
-                                    bibliotecas[name_bibliotecas][nome_pasta].remove(foto)
+                                    del bibliotecas[name_bibliotecas][nome_pasta]
 
-                                    print("Foto enviada para lixeira.")
-                    case "0":
-                    # ==========================
-                    # SAIR
-                    # ==========================
-                        print("Fechando lixeira.")
+                                    print("Pasta enviada para lixeira.")
+                        case "3":
+                            while True:
+                                name_bibliotecas = input("Digite a biblioteca: ")
+                                if (name_bibliotecas.strip() == ""):
+                                    print("Nome inválido.")
+                                else:
+                                    break
+                            if name_bibliotecas not in bibliotecas:
+                                print("Biblioteca não encontrada.")
 
-                    case _:
-                        print("Opção inválida.")
+                            else:
+                                while True:
+                                    nome_pasta = input("Digite a pasta: ")
+                                    if (nome_pasta.strip() == ""):
+                                        print("Nome inválido.")
+                                    else:
+                                        break
+
+                                if nome_pasta not in bibliotecas[name_bibliotecas]:
+                                    print("Pasta não encontrada.")
+
+                                else:
+                                    while (True):
+                                        foto = input("Digite o nome da foto: ")
+
+                                        if foto.strip() == "":
+                                            print("Nome inválido.")
+                                        else:
+                                            break;
+
+                                    if foto not in bibliotecas[name_bibliotecas][nome_pasta]:
+                                        print("Foto não encontrada.")
+                                        continue
+                                    resposta = "x"
+                                    while (True):
+                                        resposta = input("Certeza que deseja deletar? Sim ou não: ")
+                                        if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
+                                            break
+                                    if resposta.lower() in ["não", "nao", "n"]:
+                                        print("Operação cancelada.")
+                                    else:
+                                        contador = 1
+                                        nome_final = foto
+                                        while True:
+                                            ja_existe = False
+                                            for item in lixeira:
+                                                if item["tipo"] == "foto" and item["nome"] == nome_final:
+                                                    ja_existe = True
+                                                    break
+                                            if ja_existe:
+                                                nome_final = f"{foto} ({contador})"
+                                                contador += 1
+                                            else:
+                                                break
+
+                                        lixeira.append({
+                                            "tipo": "foto",
+                                            "biblioteca": name_bibliotecas,
+                                            "pasta": nome_pasta,
+                                            "nome": nome_final
+                                        })
+
+                                        bibliotecas[name_bibliotecas][nome_pasta].remove(foto)
+
+                                        print("Foto enviada para lixeira.")
+                        case "0":
+                        # ==========================
+                        # SAIR
+                        # ==========================
+                            print("Fechando lixeira.")
+                            break
+
+                        case _:
+                            print("Opção inválida.")
 
         case "6":
                 # ==========================
@@ -345,6 +346,8 @@ while(True):
                             resposta = input("Certeza que deseja Recuperar? Sim ou não: ")
                             if resposta.lower() in ["sim", "s", "não", "nao", "n"]:
                                 break
+                            else:
+                                print("Opção invalida.")
                         if resposta.lower() in ["não", "nao", "n"]:
                             print("Operação cancelada.")
                         else:
